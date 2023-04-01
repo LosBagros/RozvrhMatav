@@ -1,20 +1,6 @@
 <?php
     session_start();
-
-    $envFile = __DIR__ . '/.env';
-    if (file_exists($envFile)) {
-        $env = parse_ini_file($envFile);
-        $dbHostname = $env['DB_HOSTNAME'];
-        $dbUsername = $env['DB_USER'];
-        $dbPassword = $env['PASSWORD'];
-        $dbName = $env['DATABASE'];
-    }
-
-    $connect = mysqli_connect($dbHostname, $dbUsername, $dbPassword, $dbName);
-
-    if (!$connect) {
-        die("Connection failed: " . mysqli_connect_error());
-    }
+    include "mysql.php";
 
     if (isset($_POST['register'])) {
         $email = $_POST['email'];
@@ -56,6 +42,9 @@
             $row = mysqli_fetch_assoc($result);
             if (password_verify($password, $row['pass'])) {
                 $_SESSION['email'] = $email;
+                if($row['admin'] == 1) {
+                    $_SESSION['admin'] = true;
+                }
             } else {
                 $_SESSION['error'] = "Nesprávné heslo!";
                 header("Location:login.php");

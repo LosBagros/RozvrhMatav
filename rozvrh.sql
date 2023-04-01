@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
 -- Počítač: 127.0.0.1
--- Vytvořeno: Sob 01. dub 2023, 17:34
+-- Vytvořeno: Sob 01. dub 2023, 22:31
 -- Verze serveru: 10.4.24-MariaDB
--- Verze PHP: 8.1.6
+-- Verze PHP: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -58,6 +58,18 @@ CREATE TABLE `subjects` (
 -- --------------------------------------------------------
 
 --
+-- Struktura tabulky `teachers`
+--
+
+CREATE TABLE `teachers` (
+  `id` int(11) NOT NULL,
+  `jmeno` varchar(32) NOT NULL,
+  `zkratka` varchar(8) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Struktura tabulky `timetables`
 --
 
@@ -74,7 +86,7 @@ CREATE TABLE `timetables` (
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `email` varchar(32) NOT NULL,
-  `pass` varchar(32) NOT NULL,
+  `pass` varchar(256) NOT NULL,
   `admin` tinyint(1) NOT NULL,
   `class_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -84,7 +96,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `pass`, `admin`, `class_id`) VALUES
-(0, 'admin@bagros.eu', '$2y$10$NHhmv2Vdqrxp2cCVn2di2uDKC', 0, NULL);
+(0, 'admin@bagros.eu', '$2y$10$GpeaNSLum66EslHsgEZRMuJZCCZ9N9V9FBLAOuLTUjLJPxrbH1ghi', 1, NULL);
 
 --
 -- Indexy pro exportované tabulky
@@ -106,6 +118,12 @@ ALTER TABLE `classrooms`
 -- Indexy pro tabulku `subjects`
 --
 ALTER TABLE `subjects`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexy pro tabulku `teachers`
+--
+ALTER TABLE `teachers`
   ADD PRIMARY KEY (`id`);
 
 --
