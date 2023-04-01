@@ -49,12 +49,6 @@
         $sql = "SELECT * FROM users WHERE email = '$email'";
         $result = mysqli_query($connect, $sql);
 
-        echo "<br>";
-        echo $sql;
-        echo "<br>";
-        print_r($result);
-        echo "<br>";
-
         if (mysqli_num_rows($result) > 0) {
             $row = mysqli_fetch_assoc($result);
             if (password_verify($password, $row['pass'])) {
@@ -68,4 +62,13 @@
         }
     }
 
+    mysqli_close($connect);
+
+    if(isset($_POST["logout"]))
+    {
+        session_destroy();
+    }
+
+    header("Location:index.php");
+    die();
 ?>
