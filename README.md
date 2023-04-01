@@ -2,7 +2,6 @@
 
 ## Otázka 26 – Školní rozvrh hodin
 
-
 Pracujete na localhostu, veškeré soubory s kódy i obrázky, i sql soubor s příkazy (pokud využíváte)
 uložte do jednoho adresáře. **Po skončení práce tuto složku zkopírujte na plochu, složka bude mít
 vaše příjmení jako název!**
@@ -41,3 +40,6 @@ hodinu (pořadí hodiny, nikoliv přesný čas). Další vstupní pole do formul
 - Zkratka vyučujícího
 - Celé jméno vyučujícího
 - Učebna
+
+
+PHP 🤮🤮🤮🤮🤮🤮
