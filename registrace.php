@@ -32,6 +32,15 @@
       </div>
       <button type="submit" class="btn btn-primary w-100" name="register" value="register">Registrovat!</button>
     </form>
+    <a href="index.php" class="btn btn-primary w-100 mt-3">Zpět!</a>
+    <?php
+      if (isset($_SESSION['error'])) {
+        echo '<div class="alert alert-danger mt-3" role="alert">
+                ' . $_SESSION['error'] . '
+              </div>';
+      }
+      unset($_SESSION['error']);
+      ?>
   </div>
 
 </body>

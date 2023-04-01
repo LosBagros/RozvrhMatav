@@ -1,12 +1,5 @@
 <?php
     session_start();
-    echo "server.php";
-
-    # echo post data
-    #echo "<pre>";
-    #print_r($_POST);
-    #echo "</pre>";
-    #die();
 
     $envFile = __DIR__ . '/.env';
     if (file_exists($envFile)) {
@@ -24,26 +17,36 @@
     }
 
     if (isset($_POST['register'])) {
-        echo "register";
         $email = $_POST['email'];
+        
+        $sql = "SELECT * FROM users WHERE email = '$email'";
+        $result = mysqli_query($connect, $sql);
+        if (mysqli_num_rows($result) > 0) {
+            $_SESSION['error'] = "Tento uživatel už existuje!";
+            header("Location:registrace.php");
+            die();
+        }
+        
         $password = $_POST['password'];
         $password_confirm = $_POST['password_confirm'];
         if ($password != $password_confirm) {
-            echo "Passwords do not match!";
+            $_SESSION['error'] = "Hesla se neshodují!";
+            header("Location:registrace.php");
             die();
         }
+        
         $password = password_hash($password, PASSWORD_DEFAULT);
+
         $sql = "INSERT INTO users (email, pass) VALUES ('$email', '$password')";
         $result = mysqli_query($connect, $sql);
-        if ($result) {
-            echo "You have registered successfully!";
-        } else {
-            echo "There was a problem registering you!";
+        if (!$result) {
+            $_SESSION['error'] = "Něco se nepovedlo!";
+            header("Location:registrace.php");
+            die();
         }
     }
 
     if (isset($_POST['login'])) {
-        echo "login";
         $email = $_POST['email'];
         $password = $_POST['password'];
         $sql = "SELECT * FROM users WHERE email = '$email'";
@@ -53,12 +56,15 @@
             $row = mysqli_fetch_assoc($result);
             if (password_verify($password, $row['pass'])) {
                 $_SESSION['email'] = $email;
-                echo "You have logged in successfully!";
             } else {
-                echo "Incorrect password!";
+                $_SESSION['error'] = "Nesprávné heslo!";
+                header("Location:login.php");
+                die();
             }
         } else {
-            echo "User does not exist!";
+            $_SESSION['error'] = "Uživatel neexistuje!";
+            header("Location:login.php");
+            die();
         }
     }
 
