@@ -5,7 +5,7 @@ html, body {
     height: 100%;
 }
 
-.register {
+.costumblock {
   max-width: 330px;
   padding: 15px;
   position: absolute;
@@ -13,7 +13,4 @@ html, body {
   left: 50%;
   transform: translate(-50%, -50%);
   margin: auto;
-
-
-
 }

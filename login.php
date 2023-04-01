@@ -9,13 +9,13 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Přihlášení | </title>
+  <title>Přihlášení | MatavRozvrh</title>
   <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="./css/bootstrap.min.css">
 </head>
 <body>
 
-  <div class="register w-100">
+  <div class="costumblock w-100">
     <h1 class="text-center m-3">Přihlášení</h1>
     <form action="server.php" method="POST">
       <div class="mb-3">
