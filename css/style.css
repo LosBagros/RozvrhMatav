@@ -14,3 +14,16 @@ html, body {
   transform: translate(-50%, -50%);
   margin: auto;
 }
+
+.rozvrh {  
+  padding: 15px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: auto;
+}
+
+.rozvrh a, button {
+  max-width: 330px;
+}

@@ -15,7 +15,7 @@
 </head>
 <body>
 
-  <div class="costumblock w-100">
+  <div class="costumblock text-center w-100">
     <h1 class="text-center m-3">Přihlášení</h1>
     <form action="server.php" method="POST">
       <div class="mb-3">
