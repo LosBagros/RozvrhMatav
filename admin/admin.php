@@ -2,6 +2,7 @@
     session_start();
     if(!isset($_SESSION['admin'])){
         header("Location:../index.php");
+        die();
     }
 ?>
 
@@ -25,5 +26,6 @@
             <button type="submit" class="btn btn-primary w-100 mt-3" name="logout" value="logout">Odhlásit se!</button>
         </form>
     </div>
+    <script src="../js/theme.js"></script>
 </body>
 </html>

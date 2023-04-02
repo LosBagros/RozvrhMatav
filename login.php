@@ -1,6 +1,11 @@
 <?php
   session_start();
+  if(isset($_SESSION['email'])){
+    header("Location:index.php");
+    die();
+  }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
@@ -38,6 +43,6 @@
       unset($_SESSION['error']);
       ?>
   </div>
-
+  <script src="./js/theme.js"></script>
 </body>
 </html>

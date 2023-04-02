@@ -3,7 +3,7 @@
 
   include "../mysql.php";
 
-  if($_SESSION['admin'] != true) {
+  if(!isset($_SESSION['admin'])){
     header("Location:../index.php");
     die();
   }
