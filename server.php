@@ -30,6 +30,7 @@
             header("Location:registrace.php");
             die();
         }
+        $_SESSION['email'] = $email;
     }
 
     if (isset($_POST['login'])) {
@@ -44,6 +45,8 @@
                 $_SESSION['email'] = $email;
                 if($row['admin'] == 1) {
                     $_SESSION['admin'] = true;
+                    header("Location:admin/admin.php");
+                    die();
                 }
             } else {
                 $_SESSION['error'] = "Nesprávné heslo!";
@@ -52,8 +55,6 @@
             }
         } else {
             $_SESSION['error'] = "Uživatel neexistuje!";
-            header("Location:login.php");
-            die();
         }
     }
 
