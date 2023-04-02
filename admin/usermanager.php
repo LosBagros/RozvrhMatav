@@ -49,4 +49,16 @@
       die();
   }
 
+  if(isset($_POST['renameClass'])) {
+      $class = $_POST['renameClass'];
+      $newName = $_POST['newName'];
+      $sql = "UPDATE classes SET name = '$newName' WHERE name = '$class'";
+      $result = mysqli_query($connect, $sql);
+      if(!$result) {
+          $_SESSION['error'] = "Něco se nepovedlo!";
+      }
+      header("Location:studenti.php");
+      die();
+  }
+
 ?>
