@@ -35,7 +35,6 @@
                     foreach($result as $row) {
                         echo '<tr>';
                         echo '<td><form action="usermanager.php" method="POST"><input type="text" name="newName" value="' . $row['name'] . '"><button type="submit" class="btn btn-primary" name="renameClass" value="' . $row['id'] . '">Upravit</button></form></td>';
-
                         
                     }
                 }

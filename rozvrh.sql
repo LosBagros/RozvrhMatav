@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Počítač: 127.0.0.1
--- Vytvořeno: Sob 01. dub 2023, 22:31
+-- Vytvořeno: Ned 02. dub 2023, 15:21
 -- Verze serveru: 10.4.24-MariaDB
--- Verze PHP: 7.4.29
+-- Verze PHP: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,8 +29,15 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `classes` (
   `id` int(11) NOT NULL,
-  `nazev` varchar(4) NOT NULL
+  `nazev` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Vypisuji data pro tabulku `classes`
+--
+
+INSERT INTO `classes` (`id`, `nazev`) VALUES
+(0, '1ITA');
 
 -- --------------------------------------------------------
 
@@ -40,7 +47,7 @@ CREATE TABLE `classes` (
 
 CREATE TABLE `classrooms` (
   `id` int(11) NOT NULL,
-  `nazev` int(11) NOT NULL
+  `nazev` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -52,29 +59,7 @@ CREATE TABLE `classrooms` (
 CREATE TABLE `subjects` (
   `id` int(11) NOT NULL,
   `nazev` varchar(32) NOT NULL,
-  `zkratka` varchar(4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Struktura tabulky `teachers`
---
-
-CREATE TABLE `teachers` (
-  `id` int(11) NOT NULL,
-  `jmeno` varchar(32) NOT NULL,
   `zkratka` varchar(8) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Struktura tabulky `timetables`
---
-
-CREATE TABLE `timetables` (
-  `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -96,7 +81,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `pass`, `admin`, `class_id`) VALUES
-(0, 'admin@bagros.eu', '$2y$10$GpeaNSLum66EslHsgEZRMuJZCCZ9N9V9FBLAOuLTUjLJPxrbH1ghi', 1, NULL);
+(5, 'admin@bagros.eu', '$2y$10$QQwN7U3k6i9V0jHJdByki.FbWodobdjMiK8UAXG7WdTg.StcVWgoi', 1, NULL),
+(6, 'admin1@bagros.eu', '$2y$10$9FminSYstpBtsitvh0MiyO20qq0X5HS6ZyLTxD4LSxLCGpc.yJn.C', 0, NULL);
 
 --
 -- Indexy pro exportované tabulky
@@ -121,18 +107,6 @@ ALTER TABLE `subjects`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexy pro tabulku `teachers`
---
-ALTER TABLE `teachers`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexy pro tabulku `timetables`
---
-ALTER TABLE `timetables`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexy pro tabulku `users`
 --
 ALTER TABLE `users`
@@ -141,14 +115,14 @@ ALTER TABLE `users`
   ADD KEY `class_id` (`class_id`);
 
 --
--- Omezení pro exportované tabulky
+-- AUTO_INCREMENT pro tabulky
 --
 
 --
--- Omezení pro tabulku `users`
+-- AUTO_INCREMENT pro tabulku `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`class_id`) REFERENCES `classes` (`id`);
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
