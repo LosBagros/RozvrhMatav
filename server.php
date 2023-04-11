@@ -55,12 +55,14 @@
             }
         } else {
             $_SESSION['error'] = "Uživatel neexistuje!";
+            header("Location:login.php");
+            die();
         }
     }
 
     mysqli_close($connect);
 
-    if(isset($_POST["logout"]))
+    if(isset($_POST["logout"]));
     {
         session_destroy();
     }
