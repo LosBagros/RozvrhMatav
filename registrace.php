@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="./css/bootstrap.min.css">
 </head>
+
 <body>
 
   <div class="costumblock w-100">
@@ -33,6 +34,7 @@
       <div class="mb-3">
         <label for="password_confirm" class="form-label">Ověření hesla</label>
         <input type="password" class="form-control" id="password_confirm" name="password_confirm">
+        <div class="form-text confirm-message"></div>
       </div>
       <button type="submit" class="btn btn-primary w-100" name="register" value="register">Registrovat!</button>
     </form>
@@ -47,5 +49,24 @@
       ?>
   </div>
   <script src="./js/theme.js"></script>
+  <script src="./js/jquery-3.6.4.min.js"></script>
+  <script>
+    $('#password_confirm').on('keyup', function () {
+
+      $('.confirm-message').removeClass('text-success').removeClass('text-danger');
+
+      let password = $('#password').val();
+      let confirm_password = $('#password_confirm').val();
+
+      if (confirm_password === password) {
+        $('.confirm-message').text("Hesla se shodují!").addClass('text-success');
+      }
+      else {
+        $('.confirm-message').text("Hesla se neshodují!").addClass('text-danger');
+      }
+
+    });
+  </script>
 </body>
+
 </html>
