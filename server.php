@@ -48,6 +48,8 @@
                     header("Location:admin/admin.php");
                     die();
                 }
+                header("Location:index.php");
+                die();
             } else {
                 $_SESSION['error'] = "Nesprávné heslo!";
                 header("Location:login.php");
