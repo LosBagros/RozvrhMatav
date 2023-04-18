@@ -23,7 +23,6 @@
         <table class="mx-auto">
             <tr>
                 <th>Název Třídy</th>
-                <th>Upravit</th>
                 <th>Smazat</th>
             </tr>
             <?php
@@ -34,12 +33,14 @@
                 if($result) {
                     foreach($result as $row) {
                         echo '<tr>';
-                        echo '<td><form action="usermanager.php" method="POST"><input type="text" name="newName" value="' . $row['name'] . '"><button type="submit" class="btn btn-primary" name="renameClass" value="' . $row['id'] . '">Upravit</button></form></td>';
+                        echo '<td><form action="manager.php" method="POST"><input type="text" name="newName" value="' . $row['nazev'] . '"></form></td>';
+                        echo '<td><form action="manager.php" method="POST"><button type="submit" class="btn btn-danger" name="deleteClass" value="' . $row['class_id'] . '">Smazat</button></form></td>';
                         
                     }
                 }
             ?>
         </table>
+        <button class="btn btn-primary w-100 mt-3">Přidat třídu</button>
         <a href="admin.php" class="btn btn-primary w-100 mt-3">Zpět!</a>
     </div>
     <script src="../js/jquery-3.6.4.min.js"></script>

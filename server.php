@@ -31,6 +31,8 @@
             die();
         }
         $_SESSION['email'] = $email;
+        header("Location:index.php");
+        die();
     }
 
     if (isset($_POST['login'])) {
@@ -61,9 +63,7 @@
             die();
         }
     }
-
-    mysqli_close($connect);
-
+    
     if(isset($_POST["logout"]));
     {
         session_destroy();

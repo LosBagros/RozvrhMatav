@@ -38,8 +38,8 @@
                         echo '<td>' . $row['email'] . '</td>';
                         echo '<td>' . $row['class_id'] . '</td>';
                         $isAdmin = $row['admin'] == 1 ? "checked" : ""; 
-                        echo '<td><form action="usermanager.php" method="POST" id="admin' . $row['id'] . '"><input type="checkbox" onchange="changeAdmin(' . $row['id'] . ')"'. $isAdmin . '><input type="hidden" name="adminChange" value="' . $row['email'] . '"></form></td>';
-                        echo '<td><form action="usermanager.php" method="POST"><button type="submit" class="btn btn-danger" name="delete" value="' . $row['email'] . '">Smazat</button></form></td>';
+                        echo '<td><form action="manager.php" method="POST" id="admin' . $row['id'] . '"><input type="checkbox" onchange="changeAdmin(' . $row['id'] . ')"'. $isAdmin . '><input type="hidden" name="adminChange" value="' . $row['id'] . '"><input type="hidden" name="adminState" value="' . $row['admin'] . '"><input type="hidden" name="email" value="' . $row['email'] . '"></form></td>';
+                        echo '<td><form action="manager.php" method="POST"><button type="submit" class="btn btn-danger" name="deleteUser" value="' . $row['id'] . '">Smazat</button></form></td>';
                         echo '</tr>';
                     }
                 }
