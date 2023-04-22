@@ -19,9 +19,9 @@
 <body>
     <div class="costumblock">
         <h1 class="text-center m-3">Administrace</h1>
+        <a class="btn btn-primary w-100 mt-3" href="rozvrhy.php">Rozvrhy</a>
         <a class="btn btn-primary w-100 mt-3" href="tridy.php">Třídy</a>
-        <a class="btn btn-primary w-100 mt-3" href="studenti.php">Studenti</a>
-        <a class="btn btn-primary w-100 mt-3" href="ucitele.php">Učitelé</a>
+        <a class="btn btn-primary w-100 mt-3" href="uzivatele.php">Uživatelé</a>
         <form action="../server.php" method="POST">
             <button type="submit" class="btn btn-primary w-100 mt-3" name="logout" value="logout">Odhlásit se!</button>
         </form>

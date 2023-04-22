@@ -45,7 +45,7 @@
             $row = mysqli_fetch_assoc($result);
             if (password_verify($password, $row['pass'])) {
                 $_SESSION['email'] = $email;
-                if($row['admin'] == 1) {
+                if($row['is_admin'] == 1) {
                     $_SESSION['admin'] = true;
                     header("Location:admin/admin.php");
                     die();

@@ -1,3 +1,7 @@
+
+$("table").children().children().children().addClass("border border-info p-3");
+$("table").children().children().addClass("border border-info");
+
 // save theme to local storage
 const theme = localStorage.getItem('theme')
 const btnSwitch = document.createElement('button')
