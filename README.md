@@ -1,6 +1,12 @@
 # WEA Maturitní otázka
 
-## Otázka 26 – Školní rozvrh hodin
+Je potřeba vytvořít soubor `.env` a nastavit údaje pro databázi můžete použít `.env.example` jako vzor.
+
+Pří vývoji jsem měl těžkosti s vařením databáźe.
+
+
+## Zadání
+### Otázka 26 – Školní rozvrh hodin
 
 Pracujete na localhostu, veškeré soubory s kódy i obrázky, i sql soubor s příkazy (pokud využíváte)
 uložte do jednoho adresáře. **Po skončení práce tuto složku zkopírujte na plochu, složka bude mít
