@@ -34,16 +34,17 @@ CREATE TABLE `login` (
   `id` int(11) NOT NULL,
   `email` varchar(32) NOT NULL,
   `pass` varchar(64) NOT NULL,
-  `admin` tinyint(1) NOT NULL,
+  `is_admin` tinyint(1) NOT NULL DEFAULT 0,
+  `is_teacher` tinyint(1) NOT NULL DEFAULT 0,
   `name` varchar(32) DEFAULT NULL,
   `surname` varchar(32) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `login` (`id`, `email`, `pass`, `admin`, `name`, `surname`) VALUES
-(7, 'admin@bagros.eu', '$2y$10$dPiBDc2S25gXPrjJwn0gsunJbpOBYgRiBAfJ31knZtcvbOOQEyVK.', 1, NULL, NULL),
-(8, 'admin1@bagros.eu', '$2y$10$8Typ3oKmbyhrmHKWIqXacuKvpjmLyUSZwK0RTbRiBYXZnT0Fr65D6', 0, NULL, NULL),
-(9, 'test@test.cz', '$2y$10$NIqF1v.H4VWl.OEygvAdxOQ8ps0nDR2.WMOG0zZBwgcIyMf0FQFbm', 0, NULL, NULL),
-(10, 'tom@bagros.eu', '$2y$10$c3J277f7k/qymG.819AY5.4pofssn9Tsp/09T35PM6TDf7QUqygU.', 0, NULL, NULL);
+INSERT INTO `login` (`id`, `email`, `pass`, `is_admin`, `is_teacher`, `name`, `surname`) VALUES
+(7, 'admin@bagros.eu', '$2y$10$dPiBDc2S25gXPrjJwn0gsunJbpOBYgRiBAfJ31knZtcvbOOQEyVK.', 1, 0, NULL, NULL),
+(8, 'admin1@bagros.eu', '$2y$10$8Typ3oKmbyhrmHKWIqXacuKvpjmLyUSZwK0RTbRiBYXZnT0Fr65D6', 0, 0, NULL, NULL),
+(9, 'test@test.cz', '$2y$10$NIqF1v.H4VWl.OEygvAdxOQ8ps0nDR2.WMOG0zZBwgcIyMf0FQFbm', 0, 0, NULL, NULL),
+(10, 'tom@bagros.eu', '$2y$10$c3J277f7k/qymG.819AY5.4pofssn9Tsp/09T35PM6TDf7QUqygU.', 0, 0, NULL, NULL);
 
 CREATE TABLE `students` (
   `student_id` int(11) DEFAULT NULL,
@@ -63,7 +64,7 @@ CREATE TABLE `subjects` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `teachers` (
-  `teachear_id` int(11) DEFAULT NULL,
+  `teacher_id` int(11) DEFAULT NULL,
   `username` varchar(8) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -101,7 +102,7 @@ ALTER TABLE `subjects`
   ADD PRIMARY KEY (`subject_id`);
 
 ALTER TABLE `teachers`
-  ADD UNIQUE KEY `login_id` (`teachear_id`);
+  ADD UNIQUE KEY `login_id` (`teacher_id`);
 
 ALTER TABLE `timetable`
   ADD PRIMARY KEY (`id`),
@@ -137,7 +138,7 @@ ALTER TABLE `students`
   ADD CONSTRAINT `students_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `login` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 ALTER TABLE `teachers`
-  ADD CONSTRAINT `teachers_ibfk_2` FOREIGN KEY (`teachear_id`) REFERENCES `login` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+  ADD CONSTRAINT `teachers_ibfk_2` FOREIGN KEY (`teacher_id`) REFERENCES `login` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 ALTER TABLE `timetable`
   ADD CONSTRAINT `timetable_ibfk_1` FOREIGN KEY (`class_id`) REFERENCES `classes` (`class_id`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -145,7 +146,7 @@ ALTER TABLE `timetable`
   ADD CONSTRAINT `timetable_ibfk_3` FOREIGN KEY (`day_id`) REFERENCES `days` (`day_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `timetable_ibfk_4` FOREIGN KEY (`hour_id`) REFERENCES `hours` (`hour_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `timetable_ibfk_5` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`subject_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `timetable_ibfk_6` FOREIGN KEY (`teacher_id`) REFERENCES `teachers` (`teachear_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `timetable_ibfk_6` FOREIGN KEY (`teacher_id`) REFERENCES `teachers` (`teacher_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
