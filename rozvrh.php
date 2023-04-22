@@ -61,9 +61,3 @@
     </table>
 </div>
 
-<script src="./js/jquery-3.6.4.min.js"></script>
-<script>
-    // add class border border-info to all children of .rozvrh
-    $("table").children().children().children().addClass("border border-info p-3");
-    $("table").children().children().addClass("border border-info");
-</script>
