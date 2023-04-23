@@ -45,7 +45,7 @@
         <label for="password" class="form-label">Heslo</label>
         <input type="password" class="form-control" id="password" name="password">
       </div>
-      <button type="submit" class="btn btn-primary w-100" name="login" value="login">Přihlásit se!</button>
+      <button type="submit" class="btn btn-success   w-100" name="login" value="login" disabled>Přihlásit se!</button>
     </form>
     <a href="index.php" class="btn btn-primary w-100 mt-3">Zpět!</a>
     <?php
@@ -58,5 +58,18 @@
       ?>
   </div>
   <?php require("scripts.php") ?>
+  <script>
+  $('input').on('keyup', function () {
+      let password = $('#password').val();
+      let email = $('#email').val();
+      let email_regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+      let email_valid = email_regex.test(email);
+      if (password.length > 0 && email_valid) {
+        $('button').prop('disabled', false);
+      } else {
+        $('button').prop('disabled', true);
+      }
+    });
+  </script>
 </body>
 </html>
