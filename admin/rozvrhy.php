@@ -22,5 +22,8 @@
             $row = mysqli_fetch_assoc($result);
             print_r($row);
         ?>
+        
+     <?php require("scripts.php") ?>
+
 </body>
 </html>

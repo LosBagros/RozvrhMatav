@@ -43,7 +43,6 @@
         <button class="btn btn-primary w-100 mt-3">Přidat třídu</button>
         <a href="admin.php" class="btn btn-primary w-100 mt-3">Zpět!</a>
     </div>
-    <script src="../js/jquery-3.6.4.min.js"></script>
-    <script src="../js/theme.js"></script>
+    <?php require("scripts.php") ?>
 </body>
 </html>

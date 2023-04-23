@@ -48,9 +48,8 @@
       unset($_SESSION['error']);
       ?>
   </div>
-  <script src="./js/theme.js"></script>
-  <script src="./js/jquery-3.6.4.min.js"></script>
-  <script>
+  <?php require("scripts.php") ?>
+    <script>
     $('#password_confirm').on('keyup', function () {
 
       $('.confirm-message').removeClass('text-success').removeClass('text-danger');
@@ -68,5 +67,4 @@
     });
   </script>
 </body>
-
 </html>

@@ -43,6 +43,6 @@
       unset($_SESSION['error']);
       ?>
   </div>
-  <script src="./js/theme.js"></script>
+  <?php require("scripts.php") ?>
 </body>
 </html>
