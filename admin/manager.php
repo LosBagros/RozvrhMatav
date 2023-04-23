@@ -46,8 +46,8 @@
   if(isset($_POST['changeClassOfUser'])) {
       $id = $_POST['changeClassOfUser'];
       $class_id = $_POST['class_id'];
-      
-      $sql = "INSERT INTO students (student_id, class_id) VALUES ('$id', '$class_id') ON DUPLICATE KEY UPDATE class_id = '$class_id';";
+
+      $sql = "UPDATE `users` SET `class_id` = '$class_id' WHERE `users`.`id` = '$id'";
       $result = mysqli_query($connect, $sql);
       if(!$result) {
           $_SESSION['error'] = "Něco se nepovedlo!";
@@ -57,8 +57,7 @@
   }
 
   if(isset($_POST['addClass'])) {
-      $name = $_POST['name'];
-      $sql = "INSERT INTO classes (classname) VALUES ('$name')";
+      $sql = "INSERT INTO classes (classname) VALUES ('')";
       $result = mysqli_query($connect, $sql);
       if(!$result) {
           $_SESSION['error'] = "Něco se nepovedlo!";
@@ -69,8 +68,8 @@
 
   if(isset($_POST['renameClass'])) {
       $class_id = $_POST['class_id'];
-      $newName = $_POST['newName'];
-      $sql = "UPDATE classes SET classname = '$newName' WHERE id = '$class_id'";
+      $newName = $_POST['renameClass'];
+      $sql = "UPDATE classes SET classname = '$newName' WHERE class_id = '$class_id'";
       $result = mysqli_query($connect, $sql);
       if(!$result) {
           $_SESSION['error'] = "Něco se nepovedlo!";
@@ -126,6 +125,38 @@
     die();
   }
 
+  if(isset($_POST['addUser'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $password_confirm = $_POST['password_confirm'];
+    if($email == "" || $password == "" || $password_confirm == "") {
+        $_SESSION['error'] = "Vyplňte povinná pole!";
+        header("Location:pridatuzivatele.php");
+        die();
+    }
+    if($password != $password_confirm) {
+        $_SESSION['error'] = "Hesla se neshodují!";
+        header("Location:pridatuzivatele.php");
+        die();
+    }
+    $password = password_hash($password, PASSWORD_DEFAULT);
+    $class_id = isset($_POST['class_id']) ? $_POST['class_id'] : 1;
+    $name = isset($_POST['name']) ? $_POST['name'] : "";
+    $surname = isset($_POST['surname']) ? $_POST['surname'] : "";
+    $is_admin = isset($_POST['is_admin']) ? 1 : 0;
+    $sql = "INSERT INTO users (name, surname, email, pass, class_id, is_admin) VALUES ('$name', '$surname', '$email', '$password', '$class_id', '$is_admin')";
+    echo $sql;
+    echo "<br>";
+    $result = mysqli_query($connect, $sql);
+    echo($result);
+    die();
+    if(!$result) {
+        $_SESSION['error'] = "Něco se nepovedlo!";
+    }
+    header("Location:pridatuzivatele.php");
+    die();
+  }
+ 
 
 
 

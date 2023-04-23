@@ -26,7 +26,6 @@
                 <th>Jméno</th>
                 <th>Příjmení</th>
                 <th>Třída</th>
-                <th>Učitel</th>
                 <th>Admin</th>
                 <th>Smazat</th>
             </tr>
@@ -39,28 +38,22 @@
                     $classes = [];
                     $classes = $classes_res->fetch_all(MYSQLI_ASSOC);
                 }
-                $sql = 'SELECT u.*, s.class_id, c.classname FROM users AS u LEFT JOIN students AS s ON u.id = s.student_id LEFT JOIN classes AS c ON s.class_id = c.class_id ORDER BY u.is_teacher DESC';
+                $sql = 'SELECT * FROM users ORDER BY `users`.`is_admin` DESC';
                 $result = mysqli_query($connect, $sql);
 
                 if($result && $classes != ['error']) {
                     foreach($result as $row) {
                         echo '<tr>';
                         echo '<td><form action="manager.php" method="POST"><input type="email" name="newEmail" value="' . $row['email'] . '"><input type="hidden" name="userId" value="' . $row['id'] . '"></form></td>';
-                        //echo '<td>' . $row['name'] . ' ' . $row['surname'] . '</td>';
-                        // create form for changing name
                         echo '<td><form action="manager.php" method="POST"><input type="text" name="newName" value="' . $row['name'] . '"><input type="hidden" name="userId" value="' . $row['id'] . '"></form></td>';
-                        // create form for changing surname
                         echo '<td><form action="manager.php" method="POST"><input type="text" name="newSurname" value="' . $row['surname'] . '"><input type="hidden" name="userId" value="' . $row['id'] . '"></form></td>';
                         echo '<td><form action="manager.php" method="POST" id="changeClass' . $row['id'] . '">';
                         echo '<select name="class_id" class="form-select" onchange="changeClass('. $row['id'] . ')">';
-                        echo '<option value="null">Žádná</option>';
                         foreach($classes as $class) {
                             $selected = $class['class_id'] == $row['class_id'] ? "selected" : "";
                             echo '<option value="' . $class['class_id'] . '" ' . $selected . '>' . $class['classname'] . '</option>';
                         }
                         echo '</select><input type="hidden" name="changeClassOfUser" value="' . $row['id'] . '"></form></td>';
-                        $isTeacher = $row['is_teacher'] == 1 ? "checked" : "";
-                        echo '<td><input type="checkbox" disabled ' . $isTeacher . '></td>';
                         $isAdmin = $row['is_admin'] == 1 ? "checked" : ""; 
                         echo '<td><form action="manager.php" method="POST" id="admin' . $row['id'] . '"><input type="checkbox" onchange="changeAdmin(' . $row['id'] . ')"'. $isAdmin . '><input type="hidden" name="adminChange" value="' . $row['id'] . '"><input type="hidden" name="adminState" value="' . $row['is_admin'] . '"><input type="hidden" name="email" value="' . $row['email'] . '"></form></td>';
                         echo '<td><form action="manager.php" method="POST"><button type="submit" class="btn btn-danger" name="deleteUser" value="' . $row['id'] . '">Smazat</button></form></td>';

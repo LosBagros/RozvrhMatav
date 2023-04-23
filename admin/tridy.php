@@ -33,14 +33,14 @@
                 if($result) {
                     foreach($result as $row) {
                         echo '<tr>';
-                        echo '<td><form action="manager.php" method="POST"><input type="text" name="newName" value="' . $row['nazev'] . '"></form></td>';
+                        echo '<td><form action="manager.php" method="POST"><input type="text" name="renameClass" value="' . $row['classname'] . '"><input type="hidden" name="class_id" value="' . $row['class_id'] . '"></form></td>';
                         echo '<td><form action="manager.php" method="POST"><button type="submit" class="btn btn-danger" name="deleteClass" value="' . $row['class_id'] . '">Smazat</button></form></td>';
                         
                     }
                 }
             ?>
         </table>
-        <button class="btn btn-primary w-100 mt-3">Přidat třídu</button>
+        <form action="manager.php" method="POST"><input type="hidden" name="addClass"><button class="btn btn-success w-100 mt-3">Přidat třídu</button><br>
         <a href="admin.php" class="btn btn-primary w-100 mt-3">Zpět!</a>
     </div>
     <?php require("scripts.php") ?>

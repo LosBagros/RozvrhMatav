@@ -45,10 +45,7 @@
         <label for="password" class="form-label">Heslo</label>
         <input type="password" class="form-control" id="password" name="password">
       </div>
-      <button type="submit" class="btn btn-success   w-100" name="login" value="login" disabled>Přihlásit se!</button>
-    </form>
-    <a href="index.php" class="btn btn-primary w-100 mt-3">Zpět!</a>
-    <?php
+      <?php
       if (isset($_SESSION['error'])) {
         echo '<div class="alert alert-danger mt-3" role="alert">
                 ' . $_SESSION['error'] . '
@@ -56,6 +53,9 @@
       }
       unset($_SESSION['error']);
       ?>
+      <button type="submit" class="btn btn-success   w-100" name="login" value="login" disabled>Přihlásit se!</button>
+    </form>
+    <a href="index.php" class="btn btn-primary w-100 mt-3">Zpět!</a>
   </div>
   <?php require("scripts.php") ?>
   <script>
