@@ -15,6 +15,11 @@
         
         $password = $_POST['password'];
         $password_confirm = $_POST['password_confirm'];
+        if (strlen($password) < 8) {
+            $_SESSION['error'] = "Heslo musí mít alespoň 8 znaků!";
+            header("Location:registrace.php");
+            die();
+        }
         if ($password != $password_confirm) {
             $_SESSION['error'] = "Hesla se neshodují!";
             header("Location:registrace.php");
@@ -48,6 +53,11 @@
                 if($row['is_admin'] == 1) {
                     $_SESSION['admin'] = true;
                     header("Location:admin/admin.php");
+                    die();
+                }
+                if($row['is_teacher'] == 1) {
+                    $_SESSION['teacher'] = true;
+                    header("Location:index.php");
                     die();
                 }
                 header("Location:index.php");

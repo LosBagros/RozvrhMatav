@@ -30,13 +30,14 @@
       <div class="mb-3">
         <label for="password" class="form-label">Heslo</label>
         <input type="password" class="form-control" id="password" name="password">
+        <div class="form-text pass-message"></div>
       </div>
       <div class="mb-3">
         <label for="password_confirm" class="form-label">Ověření hesla</label>
         <input type="password" class="form-control" id="password_confirm" name="password_confirm">
         <div class="form-text confirm-message"></div>
       </div>
-      <button type="submit" class="btn btn-primary w-100" name="register" value="register">Registrovat!</button>
+      <button type="submit" class="btn btn-success w-100" name="register" value="register" disabled>Registrovat!</button>
     </form>
     <a href="index.php" class="btn btn-primary w-100 mt-3">Zpět!</a>
     <?php
@@ -49,7 +50,19 @@
       ?>
   </div>
   <?php require("scripts.php") ?>
-    <script>
+  <script>
+      $('#password').on('keyup', function () {
+
+      $('.pass-message').removeClass('text-success').removeClass('text-danger');
+      let password = $('#password').val();
+
+      if (password.length < 8) {
+        $('.pass-message').text("Heslo musí mít alespoň 8 znaků!").addClass('text-danger');
+      } else {
+        $('.pass-message').text("");
+      }
+
+    });
     $('#password_confirm').on('keyup', function () {
 
       $('.confirm-message').removeClass('text-success').removeClass('text-danger');
@@ -57,14 +70,29 @@
       let password = $('#password').val();
       let confirm_password = $('#password_confirm').val();
 
-      if (confirm_password === password) {
+      if (confirm_password === password && password.length >= 8) {
         $('.confirm-message').text("Hesla se shodují!").addClass('text-success');
       }
-      else {
+      else if (password.length >= 8) {
         $('.confirm-message').text("Hesla se neshodují!").addClass('text-danger');
       }
-
     });
+
+    // call check function on any keyup
+    $('input').on('keyup', function () {
+      let password = $('#password').val();
+      let confirm_password = $('#password_confirm').val();
+      let email = $('#email').val();
+      let email_regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+      let email_valid = email_regex.test(email);
+      if (password.length >= 8 && confirm_password === password && email_valid) {
+        $('button').prop('disabled', false);
+      } else {
+        $('button').prop('disabled', true);
+      }
+    });
+
   </script>
 </body>
+
 </html>

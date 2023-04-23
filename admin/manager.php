@@ -46,7 +46,8 @@
   if(isset($_POST['changeClassOfUser'])) {
       $id = $_POST['changeClassOfUser'];
       $class_id = $_POST['class_id'];
-      $sql = "UPDATE students SET class_id = '$class_id' WHERE student_id = '$id'";
+      
+      $sql = "INSERT INTO students (student_id, class_id) VALUES ('$id', '$class_id') ON DUPLICATE KEY UPDATE class_id = '$class_id';";
       $result = mysqli_query($connect, $sql);
       if(!$result) {
           $_SESSION['error'] = "Něco se nepovedlo!";
