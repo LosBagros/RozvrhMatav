@@ -18,8 +18,8 @@
 <body>
 <div class="rozvrh text-center w-100">
     <h1 class="text-center m-3">Rozvrh</h1>
-    <!-- select class -->
-    <select class="form-select w-25 mx-auto" id="class" name="class_id">
+    <form action="getrozvrh.php" method="POST">
+    <select class="form-select w-25 mx-auto" id="class" name="class_id" onchange="changeClass()">
         <?php
             require '../mysql.php';
             $sql = 'SELECT * FROM classes';
@@ -33,9 +33,14 @@
         ?>
     </select>
     <!-- on change load table of class -->
-
+    </form>
 </div>
      <?php require("scripts.php") ?>
+     <script>
+         function changeClass() {
+            $("form").submit();
+         }
+     </script>
 
 </body>
 </html>
