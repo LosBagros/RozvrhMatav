@@ -57,11 +57,25 @@
         header("Location:rozvrhy.php");
         die();
     }
+    $sql = "SELECT * FROM days";
+    $days = mysqli_query($connect, $sql);
+    if(!$days) {
+        $_SESSION['error'] = "Něco se nepovedlo!";
+        header("Location:rozvrhy.php");
+        die();
+    }
+
     echo '<table class="table table-bordered w-75 mx-auto">';
     echo '<tr>';
     echo '<th></th>';
     foreach($hours as $hour) {
         echo '<th>' . $hour['start'] . ' - ' . $hour['end'] . '</th>';
+    }
+    echo '</tr>';
+    foreach($days as $day) {
+        echo '<tr>';
+        echo '<th>' . $day['name'] . '</th>';
+        echo '</tr>';
     }
     echo '</table>';
 ?>
