@@ -33,15 +33,13 @@
                 require '../mysql.php';
                 $sql = 'SELECT * FROM classes;';
                 $classes_res = mysqli_query($connect, $sql);
-                $classes = ['error'];
                 if($classes_res) {
-                    $classes = [];
                     $classes = $classes_res->fetch_all(MYSQLI_ASSOC);
                 }
                 $sql = 'SELECT * FROM users ORDER BY `users`.`is_admin` DESC';
                 $result = mysqli_query($connect, $sql);
 
-                if($result && $classes != ['error']) {
+                if($result && $classes_res) {
                     foreach($result as $row) {
                         echo '<tr>';
                         echo '<td><form action="manager.php" method="POST"><input type="email" name="newEmail" value="' . $row['email'] . '"><input type="hidden" name="userId" value="' . $row['id'] . '"></form></td>';

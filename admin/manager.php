@@ -139,21 +139,24 @@
         header("Location:pridatuzivatele.php");
         die();
     }
+    $sql = "SELECT * FROM users WHERE email = '$email'";
+    $result = mysqli_query($connect, $sql);
+    if(mysqli_num_rows($result) > 0) {
+        $_SESSION['error'] = "Uživatel s tímto emailem již existuje!";
+        header("Location:pridatuzivatele.php");
+        die();
+    }
     $password = password_hash($password, PASSWORD_DEFAULT);
     $class_id = isset($_POST['class_id']) ? $_POST['class_id'] : 1;
     $name = isset($_POST['name']) ? $_POST['name'] : "";
     $surname = isset($_POST['surname']) ? $_POST['surname'] : "";
-    $is_admin = isset($_POST['is_admin']) ? 1 : 0;
+    $is_admin = isset($_POST['is_admin']) ? $_POST['is_admin'] : 0;
     $sql = "INSERT INTO users (name, surname, email, pass, class_id, is_admin) VALUES ('$name', '$surname', '$email', '$password', '$class_id', '$is_admin')";
-    echo $sql;
-    echo "<br>";
     $result = mysqli_query($connect, $sql);
-    echo($result);
-    die();
     if(!$result) {
         $_SESSION['error'] = "Něco se nepovedlo!";
     }
-    header("Location:pridatuzivatele.php");
+    header("Location:uzivatele.php");
     die();
   }
  

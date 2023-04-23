@@ -45,7 +45,7 @@
       }
       unset($_SESSION['error']);
       ?>
-      <button type="submit" class="btn btn-success w-100" name="register" value="register" disabled>Registrovat!</button>
+      <button type="submit" class="btn btn-success w-100" name="register" id="regbtn" disabled>Registrovat!</button>
     </form>
     <a href="index.php" class="btn btn-primary w-100 mt-3">Zpět!</a>
   </div>
@@ -86,9 +86,9 @@
       let email_regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
       let email_valid = email_regex.test(email);
       if (password.length >= 8 && confirm_password === password && email_valid) {
-        $('button').prop('disabled', false);
+        $('#regbtn').prop('disabled', false);
       } else {
-        $('button').prop('disabled', true);
+        $('#regbtn').prop('disabled', true);
       }
     });
 
