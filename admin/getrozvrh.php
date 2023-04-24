@@ -75,9 +75,13 @@
     foreach($days as $day) {
         echo '<tr>';
         echo '<th>' . $day['name'] . '</th>';
+        foreach($hours as $hour) {
+            
+        }
         echo '</tr>';
     }
     echo '</table>';
+    
 ?>
 
 <a href="rozvrhy.php" class="btn btn-primary w-100 mt-3">Zpět!</a>
